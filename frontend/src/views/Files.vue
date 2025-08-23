@@ -9,12 +9,9 @@
                         📂 Aucun fichier envoyé pour le moment.
                     </div>
                 </template>
-                <!-- Colonne Nom du fichier -->
                 <template #item.filename="{ item }">
                     <span>{{ item.attachment }}</span>
                 </template>
-
-                <!-- Colonne Fichier (Aperçu + Download) -->
                 <template #item.attachment="{ item }">
                     <div class="d-flex align-center">
                         <v-btn v-if="item.attachment" icon="mdi-eye" variant="text" @click="previewFile(item)" />
@@ -22,8 +19,6 @@
                             icon="mdi-download" variant="text" />
                     </div>
                 </template>
-
-                <!-- Bouton corbeille -->
                 <template #item.actions="{ item }">
                     <v-btn color="error" icon="mdi-delete" variant="text" @click="deleteFile(item.id)" />
                 </template>
@@ -31,10 +26,7 @@
                     {{ pageStart }}–{{ pageStop }} sur {{ itemsLength }}
                 </template>
             </v-data-table>
-
         </v-card>
-
-        <!-- Dialog aperçu -->
         <v-dialog v-model="previewDialog" max-width="800px">
             <v-card>
                 <v-card-title class="text-h6">Aperçu du fichier</v-card-title>
@@ -57,7 +49,6 @@
         </v-dialog>
     </v-container>
 </template>
-
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 

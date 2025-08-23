@@ -42,8 +42,6 @@ const file = ref<File | null>(null)
 const sending = ref(false)
 const retryAfter = ref<string | undefined>()
 const errorMessage = ref('')
-
-// états pour fermer manuellement les alertes
 const tooBigAlert = ref(false)
 const errorAlert = ref(false)
 
@@ -83,7 +81,6 @@ const submit = async () => {
       const data = await res.json()
       errorMessage.value = data.error || 'Trop de messages. Réessayez plus tard.'
       retryAfter.value = data.retryAfter
-      // 👉 pas de snackbar ici, juste l’alerte rouge
     } else {
       snackbarText.value = 'Erreur lors de l’envoi'
       snackbarColor.value = 'error'
@@ -98,6 +95,5 @@ const submit = async () => {
     await refreshQuota()
   }
 }
-
 onMounted(refreshQuota)
 </script>

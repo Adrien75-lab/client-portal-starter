@@ -2,17 +2,13 @@
   <v-container class="d-flex align-center justify-center" style="height: 100vh">
     <v-card max-width="400" class="pa-6" elevation="6">
       <v-card-title class="text-h6 justify-center">Inscription</v-card-title>
-
       <v-card-text>
         <v-form @submit.prevent="submit">
           <v-text-field v-model="email" label="Email" type="email" prepend-inner-icon="mdi-email" required />
-
           <v-text-field v-model="password" :type="showPassword ? 'text' : 'password'" label="Mot de passe"
             prepend-inner-icon="mdi-lock" :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
             @click:append-inner="showPassword = !showPassword" :error="!passwordValid && password.length > 0"
             :error-messages="passwordErrorMessage" required />
-
-          <!-- Règles de mot de passe -->
           <v-list density="compact" class="mt-2">
             <v-list-item :class="{ 'text-success': /[A-Z]/.test(password) }">
               <v-list-item-title>1 majuscule</v-list-item-title>
@@ -36,13 +32,9 @@
         </v-form>
       </v-card-text>
     </v-card>
-
-    <!-- Snackbar succès -->
     <v-snackbar v-model="snackbarSuccess" color="success" timeout="3000" location="top right">
       ✅ Compte créé avec succès
     </v-snackbar>
-
-    <!-- Snackbar erreur -->
     <v-snackbar v-model="snackbarError" color="error" timeout="3000" location="top right">
       ❌ Erreur lors de l'inscription
     </v-snackbar>
@@ -56,11 +48,8 @@ const email = ref("")
 const password = ref("")
 const loading = ref(false)
 const showPassword = ref(false)
-
 const snackbarSuccess = ref(false)
 const snackbarError = ref(false)
-
-// Validation mot de passe
 const passwordValid = computed(() => {
   return (
     /[A-Z]/.test(password.value) &&

@@ -124,5 +124,15 @@ docker compose down -v
 
 ---
 
+## 🕒 Cron Symfony
+
+Un cron est disponible pour compter le nombre d’utilisateurs connectés chaque jour.  
+
+### Exécution manuelle
+```bash
+docker compose exec backend php bin/console app:report:daily-logins
+
 👨‍💻 Développé avec ❤️ pour le test technique
+
+⏱️ Temps passé sur le projet : 8h
 # client-portal-starter

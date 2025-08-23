@@ -21,8 +21,6 @@ export const router = createRouter({
 // Guard
 router.beforeEach(async (to, from, next) => {
   const auth = useAuth()
-
-  // ✅ Seulement si auth.me est null ET qu'on n'a pas fait de logout
   if (auth.me === null) {
     try {
       await auth.fetchMe()
