@@ -1,0 +1,25 @@
+FROM php:8.2-cli
+
+# Installe les dépendances système (composer, pdo_mysql…)
+RUN apt-get update && apt-get install -y \
+    unzip git libicu-dev libpq-dev libzip-dev zip \
+    && docker-php-ext-install pdo pdo_mysql intl opcache \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl
+
+# Installe Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Définit le répertoire de travail
+WORKDIR /app
+
+# Copie ton code Symfony
+COPY . /app
+
+# Installe les dépendances PHP (dont serializer déjà défini dans composer.json)
+RUN composer install --no-interaction --optimize-autoloader
+
+# Port exposé (si jamais tu utilises le serveur PHP natif)
+EXPOSE 8080
+
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]

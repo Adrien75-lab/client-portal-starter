@@ -1,0 +1,1 @@
+SELECT id, email, lastLoginAt FROM users ORDER BY id DESC LIMIT 20;

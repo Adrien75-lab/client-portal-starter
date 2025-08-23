@@ -1,0 +1,28 @@
+security:
+  password_hashers:
+    App\Entity\User: 'auto'
+
+  providers:
+    app_user_provider:
+      entity: { class: App\Entity\User, property: email }
+
+  firewalls:
+    main:
+      provider: app_user_provider
+      lazy: true
+      stateless: false
+      json_login:
+        check_path: /auth/login
+        username_path: email
+        password_path: password
+      logout:
+        path: /auth/logout
+        invalidate_session: true
+        delete_cookies: ['PHPSESSID']
+
+  access_control:
+    - { path: ^/auth/login$, roles: PUBLIC_ACCESS }
+    - { path: ^/auth/register$, roles: PUBLIC_ACCESS }
+    - { path: ^/auth/me$, roles: PUBLIC_ACCESS }
+    - { path: ^/api/contact/can-send$, roles: PUBLIC_ACCESS }
+    - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
