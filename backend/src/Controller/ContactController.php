@@ -26,7 +26,7 @@ class ContactController extends AbstractController
             return $this->json(['error' => 'Unauthorized'], 401);
         }
 
-        $limiter = $this->contactPerUser->create((string)$user->getId());
+        $limiter = $this->contactPerUser->create((string)$user->getUserIdentifier());
         $probe = $limiter->consume(0);
 
         return $this->json([
@@ -41,7 +41,7 @@ class ContactController extends AbstractController
         $user = $this->getUser();
         if (!$user) return $this->json(['error' => 'Unauthorized'], 401);
 
-        $limiter = $this->contactPerUser->create((string)$user->getId());
+        $limiter = $this->contactPerUser->create((string)$user->getUserIdentifier());
         $limit = $limiter->consume(1);
         if (!$limit->isAccepted()) {
             return $this->json(['error' => 'Trop de messages. Réessayez plus tard.', 'retryAfter' => $limit->getRetryAfter()?->format(DATE_ATOM)], 429);
