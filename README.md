@@ -53,31 +53,12 @@ docker compose exec backend php bin/console doctrine:database:create
 ```bash
 docker compose exec backend php bin/console doctrine:migrations:migrate --no-interaction
 ```
-
----
-
-## 🧪 Données de test (fixtures)
-
-Charger les données de démo :
-```bash
-docker compose exec backend php bin/console doctrine:fixtures:load --no-interaction
-```
-
 ---
 
 ## 📧 Vérifier les emails
 
 Tous les emails sortants sont capturés par **Mailhog**.  
 👉 Interface web : [http://localhost:8025](http://localhost:8025)
-
----
-
-## 🔐 Comptes de test
-
-Après chargement des fixtures, vous pouvez utiliser :
-
-- **Email** : `test@ex.com`  
-- **Mot de passe** : `Password123!`
 
 ---
 
