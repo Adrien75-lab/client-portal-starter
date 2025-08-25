@@ -2,7 +2,6 @@
   <v-container class="d-flex align-center justify-center" style="height: 100vh">
     <v-card max-width="400" class="pa-6" elevation="6">
       <v-card-title class="text-h6 justify-center">Connexion</v-card-title>
-
       <v-card-text>
         <v-form @submit.prevent="submit">
           <v-text-field v-model="email" label="Email" type="email" prepend-inner-icon="mdi-email" required />
@@ -22,8 +21,6 @@
         </v-form>
       </v-card-text>
     </v-card>
-
-    <!-- Snackbar succès -->
     <v-snackbar v-model="snackbar" color="success" timeout="3000" location="top right">
       ✅ Connexion réussie
     </v-snackbar>

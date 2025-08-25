@@ -42,6 +42,6 @@ onMounted(() => { auth.fetchMe() })
 
 async function onLogout() {
   await auth.logout()
-  router.push('/login')   // push suffit, le guard va bloquer toute autre page
+  router.push('/login')
 }
 </script>

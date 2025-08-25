@@ -61,7 +61,7 @@ const previewFileUrl = ref<string | null>(null)
 const headers = [
     { title: 'Sujet', key: 'subject' },
     { title: 'Message', key: 'message' },
-    { title: 'Nom du fichier', key: 'filename' }, // <-- nouvelle colonne
+    { title: 'Nom du fichier', key: 'filename' },
     { title: 'Fichier', key: 'attachment' },
     { title: 'Date', key: 'createdAt' },
     { title: 'Actions', key: 'actions', sortable: false },
